@@ -3,10 +3,10 @@ package com.luxoft.psobczak.exceptions;
 public class OverDraftLimitExceededException extends NotEnoughFundsException {
 
 	private float overDraft;
-	private float b = 1234;
 
-	public OverDraftLimitExceededException(float overDraft) {
-		super();
+
+	public OverDraftLimitExceededException(float overDraft, float balance, float amount) {
+		super(amount,balance);
 		this.overDraft = overDraft;
 	}
 

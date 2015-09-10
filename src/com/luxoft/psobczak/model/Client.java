@@ -59,6 +59,10 @@ public class Client implements Report {
     public Gender getGender() {
 	return gender;
     }
+    
+    public String getName() {
+    	return name;
+        }
 
     public String getClientSalutation() {
 	return gender.getGreeting();

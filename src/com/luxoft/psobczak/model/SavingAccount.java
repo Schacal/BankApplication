@@ -3,17 +3,10 @@ package com.luxoft.psobczak.model;
 import com.luxoft.psobczak.exceptions.NotEnoughFundsException;
 
 public class SavingAccount extends AbstractAccount {
-	
-	
-	
-	
-	
-	
-	public SavingAccount(float initialBalance){
+
+	public SavingAccount(float initialBalance) {
 		balance = initialBalance;
 	}
-	
-	
 
 	@Override
 	public void printReport() {
@@ -22,15 +15,16 @@ public class SavingAccount extends AbstractAccount {
 	}
 
 	@Override
-	public float getBalance() {	
+	public float getBalance() {
 		return this.balance;
 	}
 
-
 	@Override
-	public void withdraw(float x) throws NotEnoughFundsException{
-		if (this.balance >= x) this.balance -= x;
-		else throw new NotEnoughFundsException(x);
+	public void withdraw(float x) throws NotEnoughFundsException {
+		if (this.balance >= x)
+			this.balance -= x;
+		else
+			throw new NotEnoughFundsException(x, this.balance);
 
 	}
 
