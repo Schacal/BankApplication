@@ -22,7 +22,7 @@ public class BankApplication {
     public static void main(String[] args) throws BankException {
 
 	try {
-
+		//initializing required objects
 	    initialize();
 
 	    service.addClient(bank, Adam);
