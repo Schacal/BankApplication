@@ -1,12 +1,14 @@
 package com.luxoft.psobczak.model;
 
+import java.math.BigDecimal;
+
 import com.luxoft.psobczak.exceptions.OverDraftLimitExceededException;
 
 public class CheckingAccount extends AbstractAccount {
 
-	float overDraft;
+	BigDecimal overDraft;
 
-	public CheckingAccount(float balance, float overDraft) {
+	public CheckingAccount(BigDecimal balance, BigDecimal overDraft) {
 		super.balance = balance;
 		this.overDraft = overDraft;
 	}
@@ -19,29 +21,30 @@ public class CheckingAccount extends AbstractAccount {
 	}
 
 	@Override
-	public float getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
 
 	@Override
-	public void withdraw(float withdraw) throws OverDraftLimitExceededException {
-		if (this.balance > withdraw)
-			this.balance -= withdraw;
-		if (this.balance <= withdraw && withdraw <= overDraft)
-			this.balance -= withdraw;
+	public void withdraw(BigDecimal withdraw) throws OverDraftLimitExceededException {
+		if (this.balance.compareTo(withdraw) >= 0){
+			this.balance = balance.subtract(withdraw);
+			System.out.println("balance > 0");}
+		if (this.balance.compareTo(withdraw) <= 0 && withdraw.compareTo(this.overDraft) <= 0)
+			this.balance = balance.subtract(withdraw);
 
-		if (this.balance <= withdraw && withdraw > overDraft) {
+		if (this.balance.compareTo(withdraw)<=0 && withdraw.compareTo(overDraft) > 0) {
 			throw new OverDraftLimitExceededException(withdraw, this.balance, this.overDraft);
 
 		}
 
 	}
 
-	public float getOverDraft() {
+	public BigDecimal getOverDraft() {
 		return overDraft;
 	}
 
-	public void setOverDraft(float overDraft) {
+	public void setOverDraft(BigDecimal overDraft) {
 		this.overDraft = overDraft;
 	}
 
@@ -53,7 +56,7 @@ public class CheckingAccount extends AbstractAccount {
 	@Override
 	public void decimalValue() {
 		
-		System.out.println("Rounded balance on Checking Account: "+ Math.round(balance));
+		System.out.println("Rounded balance on Checking Account: "+ Math.round(balance.floatValue()));
 		
 	}
 

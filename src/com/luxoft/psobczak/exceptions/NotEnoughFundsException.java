@@ -1,10 +1,12 @@
 package com.luxoft.psobczak.exceptions;
 
+import java.math.BigDecimal;
+
 public class NotEnoughFundsException extends BankException {
 
-	protected float amount;
+	protected BigDecimal amount;
 
-	public NotEnoughFundsException(float amount, float balance) {
+	public NotEnoughFundsException(BigDecimal amount, BigDecimal balance) {
 
 		this.amount = amount;
 		this.balance = balance;

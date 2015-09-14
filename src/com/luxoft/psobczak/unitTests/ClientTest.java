@@ -1,5 +1,7 @@
 package com.luxoft.psobczak.unitTests;
 
+import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -27,11 +29,13 @@ public class ClientTest {
 		Client Adam = new Client("Adam", Gender.MALE);
 		
 		BankServiceImpl service = new BankServiceImpl();
-		service.addAccount(Adam, new CheckingAccount(800, Adam.getInitialOverdraft()));
-		service.addAccount(Adam, new CheckingAccount(800, Adam.getInitialOverdraft()));
-		service.addAccount(Adam, new SavingAccount(800));
+		service.addAccount(Adam, new CheckingAccount(BigDecimal.TEN, BigDecimal.TEN));
+		service.addAccount(Adam, new CheckingAccount(BigDecimal.TEN, BigDecimal.TEN));
+		service.addAccount(Adam, new SavingAccount(BigDecimal.TEN));
 		
-		Assert.assertEquals(2400, Adam.getOverallBalance(), 0);
+		BigDecimal result = new BigDecimal(30); 
+		
+		Assert.assertEquals(result, Adam.getOverallBalance());
 		
 	
 	}

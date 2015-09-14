@@ -1,11 +1,13 @@
 package com.luxoft.psobczak.exceptions;
 
+import java.math.BigDecimal;
+
 public class OverDraftLimitExceededException extends NotEnoughFundsException {
 
-	private float overDraft;
+	private BigDecimal overDraft;
 
 
-	public OverDraftLimitExceededException(float overDraft, float balance, float amount) {
+	public OverDraftLimitExceededException(BigDecimal overDraft, BigDecimal balance, BigDecimal amount) {
 		super(amount,balance);
 		this.overDraft = overDraft;
 	}

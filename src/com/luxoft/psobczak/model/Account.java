@@ -1,12 +1,14 @@
 package com.luxoft.psobczak.model;
 
+import java.math.BigDecimal;
+
 import com.luxoft.psobczak.exceptions.BankException;
 
 public interface Account extends Report {
 	
-	public float getBalance();
-	public void deposit(float x);
-	public void withdraw(float x) throws BankException;
+	public BigDecimal getBalance();
+	public void deposit(BigDecimal x);
+	public void withdraw(BigDecimal x) throws BankException;
 	
 	public void decimalValue();
 }

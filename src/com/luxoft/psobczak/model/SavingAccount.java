@@ -1,29 +1,31 @@
 package com.luxoft.psobczak.model;
 
+import java.math.BigDecimal;
+
 import com.luxoft.psobczak.exceptions.NotEnoughFundsException;
 
 public class SavingAccount extends AbstractAccount {
 
 
-	public SavingAccount(float initialBalance) {
+	public SavingAccount(BigDecimal initialBalance) {
 		balance = initialBalance;
 	}
 
 	@Override
 	public void printReport() {
-		System.out.println(" -Saving Account with actual balance: " + this.balance);
+		System.out.println(" -Saving Account with actual balance: " + this.balance.toString());
 
 	}
 
 	@Override
-	public float getBalance() {
+	public BigDecimal getBalance() {
 		return this.balance;
 	}
 
 	@Override
-	public void withdraw(float x) throws NotEnoughFundsException {
-		if (this.balance >= x)
-			this.balance -= x;
+	public void withdraw(BigDecimal x) throws NotEnoughFundsException {
+		if (this.balance.compareTo(x) >= 0)
+			this.balance = balance.subtract(x);
 		else
 			throw new NotEnoughFundsException(x, this.balance);
 
@@ -36,7 +38,7 @@ public class SavingAccount extends AbstractAccount {
 
 	@Override
 	public void decimalValue() {
-		System.out.println("Rounded balance on Saving Account: "+ Math.round(balance));
+		System.out.println("Rounded balance on Saving Account: "+ Math.round(balance.floatValue()));
 		
 	}
 

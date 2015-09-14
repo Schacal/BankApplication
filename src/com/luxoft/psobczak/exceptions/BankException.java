@@ -1,6 +1,8 @@
 package com.luxoft.psobczak.exceptions;
 
+import java.math.BigDecimal;
+
 public class BankException extends Exception {
 
-	protected float balance;
+	protected BigDecimal balance;
 }

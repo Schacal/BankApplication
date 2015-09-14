@@ -1,6 +1,6 @@
 package com.luxoft.psobczak.model;
 
-import java.util.Collections;
+import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -67,12 +67,12 @@ public class Client implements Report {
 	}
 
 	
-	public float getOverallBalance() {
+	public BigDecimal getOverallBalance() {
 	// method give overall balance on client's all accounts
 	
-	float overallBalance = 0;
+	BigDecimal overallBalance = new BigDecimal(0);
 	for (Account account : accounts) {
-	    overallBalance += account.getBalance();
+	    overallBalance = overallBalance.add(account.getBalance()) ;
 	}
 	return overallBalance;
     }
