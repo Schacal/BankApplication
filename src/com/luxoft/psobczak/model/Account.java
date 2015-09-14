@@ -8,5 +8,5 @@ public interface Account extends Report {
 	public void deposit(float x);
 	public void withdraw(float x) throws BankException;
 	
-
+	public void decimalValue();
 }

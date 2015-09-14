@@ -4,6 +4,7 @@ import com.luxoft.psobczak.exceptions.NotEnoughFundsException;
 
 public class SavingAccount extends AbstractAccount {
 
+
 	public SavingAccount(float initialBalance) {
 		balance = initialBalance;
 	}
@@ -27,5 +28,17 @@ public class SavingAccount extends AbstractAccount {
 			throw new NotEnoughFundsException(x, this.balance);
 
 	}
+	
+	@Override
+	public String toString() {
+		return "SavingAccount balance= " + balance;
+	}
+
+	@Override
+	public void decimalValue() {
+		System.out.println("Rounded balance on Saving Account: "+ Math.round(balance));
+		
+	}
+
 
 }

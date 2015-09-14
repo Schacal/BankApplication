@@ -31,6 +31,7 @@ public class BankApplication {
 			service.addClient(bank, Anna);
 			service.addClient(bank, Cris);
 			service.addAccount(Adam, new CheckingAccount(800, Adam.getInitialOverdraft()));
+			service.addAccount(Adam, new SavingAccount(801.5f));
 			service.addAccount(Anna, new SavingAccount(200));
 
 			bank.printReport();
@@ -38,6 +39,8 @@ public class BankApplication {
 			modifyBank(Adam, 0, 300);
 			modifyBank(Anna, 200, 400);
 			modifyBank(Cris, 200, 300);
+			System.out.println(Adam);
+			Adam.getAccounts().get(1).decimalValue();
 
 		}
 

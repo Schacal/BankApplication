@@ -6,7 +6,8 @@ import java.util.List;
 
 public class Client implements Report {
 
-    private String name;
+
+	private String name;
     private List<Account> accounts;
     private Account activeAccount;
     private float initialOverdraft = 1000;
@@ -24,7 +25,49 @@ public class Client implements Report {
 	this.activeAccount = activeAccount;
     }
 
-    public float getOverallBalance() {
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		if (gender != other.gender)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+
+    @Override
+	public String toString() {
+    	
+    	StringBuilder result = new StringBuilder("Client name: ");
+    	result.append(name);
+    	result.append(", have account(s): ");
+    	result.append(accounts);
+    	result.append(", gender: ");
+    	result.append(gender);
+    	
+		return result.toString();
+	}
+
+	
+	public float getOverallBalance() {
 	// method give overall balance on client's all accounts
 	
 	float overallBalance = 0;
@@ -49,6 +92,7 @@ public class Client implements Report {
 	    accounts.get(listIncrementNumber).printReport();
 	    listIncrementNumber++;
 	}
+    
 
     }
 

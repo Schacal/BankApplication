@@ -45,4 +45,16 @@ public class CheckingAccount extends AbstractAccount {
 		this.overDraft = overDraft;
 	}
 
+	@Override
+	public String toString() {
+		return "CheckingAccount balance= " + balance + " and overdraft= " + overDraft;
+	}
+
+	@Override
+	public void decimalValue() {
+		
+		System.out.println("Rounded balance on Checking Account: "+ Math.round(balance));
+		
+	}
+
 }
