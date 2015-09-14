@@ -28,7 +28,6 @@ public class BankApplication {
 			initialize();
 
 			service.addClient(bank, Adam);
-
 			service.addClient(bank, Anna);
 			service.addClient(bank, Cris);
 			
@@ -36,31 +35,32 @@ public class BankApplication {
 			
 			service.addAccount(Adam, new CheckingAccount(BigDecimal.TEN, BigDecimal.TEN));
 			service.addAccount(Adam, new SavingAccount(BigDecimal.TEN));
-			//service.addAccount(Anna, new SavingAccount(BigDecimal.TEN));
+			service.addAccount(Anna, new SavingAccount(BigDecimal.TEN));
 			
 			
 
 			bank.printReport();
 			
-			BigDecimal deposit = new BigDecimal(0);
-			BigDecimal withdraw = new BigDecimal(10);
+			BigDecimal deposit = new BigDecimal(20);
+			BigDecimal withdraw = new BigDecimal(40);
 
-			System.out.println(deposit.compareTo(withdraw));
+			
 			
 			modifyBank(Adam, deposit, withdraw);
 			modifyBank(Anna, deposit, withdraw);
-			modifyBank(Cris, deposit, withdraw);
-			System.out.println(Adam);
+			
 			
 
 		}
 
 		catch (OverDraftLimitExceededException e) {
+		    	System.out.println("OverDraftLimitExceededException");
 			e.printStackTrace();
 
 		}
 
 		catch (NotEnoughFundsException e) {
+		    System.out.println("NotEnoughFundsException");
 			e.printStackTrace();
 
 		}
