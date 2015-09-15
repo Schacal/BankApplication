@@ -10,7 +10,8 @@ public class Client implements Report {
 	private String name;
     private List<Account> accounts;
     private Account activeAccount;
-    private float initialOverdraft = 1000;
+
+	private float initialOverdraft = 1000;
     private Gender gender;
 
     public Client(String name, Gender gender) {
@@ -18,8 +19,17 @@ public class Client implements Report {
 	this.name = name;
 	this.gender = gender;
 	accounts = new LinkedList<Account>();
-
     }
+    
+    public Client(String name) {
+
+	this.name = name;
+	this.gender = Gender.UNKNOWN;
+	accounts = new LinkedList<Account>();
+    }
+    
+    
+    
 
     public void setActiveAccount(Account activeAccount) {
 	this.activeAccount = activeAccount;
@@ -29,7 +39,7 @@ public class Client implements Report {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -43,8 +53,7 @@ public class Client implements Report {
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
-		if (gender != other.gender)
-			return false;
+
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -111,5 +120,10 @@ public class Client implements Report {
     public String getClientSalutation() {
 	return gender.getGreeting();
     }
+    
+    public Account getActiveAccount() {
+		return activeAccount;
+	}
+
 
 }

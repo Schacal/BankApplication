@@ -10,5 +10,9 @@ public interface BankService {
 	public void removeClient(Bank bank, Client client);
 	public void addAccount(Client client, Account account);
 	public void setActiveAccount(Client client, Account account);
+	public void findClient(Client client, Bank bank);
+	public void getAccountsOnClient(Client client, Bank bank);
+	public void deposit(Client client, Bank bank);
+	public void withdraw(Client client, Bank bank);
 
 }

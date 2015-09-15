@@ -22,7 +22,7 @@ public class SavingAccountTest {
     public void withdrawTest() throws BankException {
 	Client Adam = new Client("Adam", Gender.MALE);
 
-	BankServiceImpl service = new BankServiceImpl();
+	BankServiceImpl service = BankServiceImpl.INSTANCE;
 	service.addAccount(Adam, new SavingAccount(BigDecimal.TEN));
 	BigDecimal deposit = new BigDecimal(30);
 	BigDecimal withdraw = new BigDecimal(40);
@@ -39,7 +39,7 @@ public class SavingAccountTest {
     public void withdrawTestException() throws BankException {
 	Client Adam = new Client("Adam", Gender.MALE);
 
-	BankServiceImpl service = new BankServiceImpl();
+	BankServiceImpl service = BankServiceImpl.INSTANCE;
 	service.addAccount(Adam, new SavingAccount(BigDecimal.TEN));
 	BigDecimal deposit = new BigDecimal(30);
 	BigDecimal withdraw = new BigDecimal(41);

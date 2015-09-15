@@ -1,7 +1,9 @@
 package com.luxoft.psobczak.view;
 
 import java.math.BigDecimal;
+import java.util.Scanner;
 
+import com.luxoft.psobczak.controller.BankCommander;
 import com.luxoft.psobczak.controller.BankServiceImpl;
 import com.luxoft.psobczak.exceptions.BankException;
 import com.luxoft.psobczak.exceptions.NotEnoughFundsException;
@@ -16,51 +18,69 @@ import com.luxoft.psobczak.model.SavingAccount;
 public class BankApplication {
 
 	static Client Adam;
+	static Client Adam2;
 	static Client Anna;
 	static Client Cris;
 	static Bank bank;
 	static BankServiceImpl service;
 
 	public static void main(String[] args) throws BankException {
+		
+	
+	       
+		
 
 		try {
 			// initializing required objects
 			initialize();
+			
+			
+		   
 
 			service.addClient(bank, Adam);
-			service.addClient(bank, Anna);
-			service.addClient(bank, Cris);
+			BankCommander.currentClient = Adam;
+
 			
 			
 			
 			service.addAccount(Adam, new CheckingAccount(BigDecimal.TEN, BigDecimal.TEN));
 			service.addAccount(Adam, new SavingAccount(BigDecimal.TEN));
-			service.addAccount(Anna, new SavingAccount(BigDecimal.TEN));
+
+			Adam.setActiveAccount(Adam.getAccounts().get(0));
 			
+			  
+            for (int i=0;i<BankCommander.commands.length;i++) { // show menu
+                  System.out.print(i+") ");
+                  BankCommander.commands[i].PrintCommandInfo();
+            }
+        
+            int option = new Scanner(System.in).nextInt();
+            BankCommander.commands[option].execute();
+			
+			//BankCommander.commands[2].execute();
 			
 
 			bank.printReport();
 			
-			BigDecimal deposit = new BigDecimal(20);
-			BigDecimal withdraw = new BigDecimal(40);
+			BigDecimal deposit = new BigDecimal(0);
+			BigDecimal withdraw = new BigDecimal(0);
 
 			
 			
 			modifyBank(Adam, deposit, withdraw);
 			modifyBank(Anna, deposit, withdraw);
 			
+		
 			
 
 		}
 
 		catch (OverDraftLimitExceededException e) {
-		    	System.out.println("OverDraftLimitExceededException");
 			e.printStackTrace();
 
 		}
 
 		catch (NotEnoughFundsException e) {
-		    System.out.println("NotEnoughFundsException");
 			e.printStackTrace();
 
 		}
@@ -72,13 +92,14 @@ public class BankApplication {
 	}
 
 	public static void initialize() {
-
+		
+		Adam2 = new Client("Adam");
 		Adam = new Client("Adam", Gender.MALE);
 		Anna = new Client("Anna", Gender.FEMALE);
 		Cris = new Client("Cris", Gender.MALE);
-		bank = new Bank();
+		bank = BankCommander.currentBank;
 
-		service = new BankServiceImpl();
+		service = BankServiceImpl.INSTANCE;
 
 	}
 

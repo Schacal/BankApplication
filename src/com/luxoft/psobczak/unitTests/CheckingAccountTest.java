@@ -23,7 +23,7 @@ public class CheckingAccountTest {
     public void testForWithdrawMethodInFirstIf() throws BankException {
 	Client Adam = new Client("Adam", Gender.MALE);
 
-	BankServiceImpl service = new BankServiceImpl();
+	BankServiceImpl service = BankServiceImpl.INSTANCE;
 	service.addAccount(Adam, new CheckingAccount(BigDecimal.TEN, BigDecimal.TEN));
 	BigDecimal deposit = new BigDecimal(30);
 	BigDecimal withdraw = new BigDecimal(39);
@@ -38,7 +38,7 @@ public class CheckingAccountTest {
     public void testForWithdrawMethodInSecondIf() throws BankException {
 	Client Adam = new Client("Adam", Gender.MALE);
 
-	BankServiceImpl service = new BankServiceImpl();
+	BankServiceImpl service = BankServiceImpl.INSTANCE;
 	service.addAccount(Adam, new CheckingAccount(BigDecimal.TEN, BigDecimal.TEN));
 
 	BigDecimal deposit = new BigDecimal(20);
@@ -53,7 +53,7 @@ public class CheckingAccountTest {
     public void testForWithdrawMethodInThirdIf() throws BankException {
 	Client Adam = new Client("Adam", Gender.MALE);
 
-	BankServiceImpl service = new BankServiceImpl();
+	BankServiceImpl service = BankServiceImpl.INSTANCE;
 	service.addAccount(Adam, new CheckingAccount(BigDecimal.TEN, BigDecimal.TEN));
 
 	BigDecimal deposit = new BigDecimal(20);

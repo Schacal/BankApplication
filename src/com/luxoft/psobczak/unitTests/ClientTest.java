@@ -28,7 +28,7 @@ public class ClientTest {
 	public void OverAllBalanceTestMetohd() {
 		Client Adam = new Client("Adam", Gender.MALE);
 		
-		BankServiceImpl service = new BankServiceImpl();
+		BankServiceImpl service = BankServiceImpl.INSTANCE;
 		service.addAccount(Adam, new CheckingAccount(BigDecimal.TEN, BigDecimal.TEN));
 		service.addAccount(Adam, new CheckingAccount(BigDecimal.TEN, BigDecimal.TEN));
 		service.addAccount(Adam, new SavingAccount(BigDecimal.TEN));
