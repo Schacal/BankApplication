@@ -3,18 +3,18 @@ package com.luxoft.psobczak.service;
 import com.luxoft.psobczak.controller.BankCommander;
 import com.luxoft.psobczak.controller.BankServiceImpl;
 
-public class TransferCommand implements Command {
+public class AddClientCommand implements Command {
 
 	@Override
 	public void execute() {
+		BankServiceImpl.INSTANCE.addClient(BankCommander.currentBank);
 
-		BankServiceImpl.INSTANCE.transfer(BankCommander.currentClient, BankCommander.currentBank);
 
 	}
 
 	@Override
 	public void PrintCommandInfo() {
-		System.out.println("Transfer cash between clients accounts");
+		System.out.println("Add new client to bank");
 
 	}
 

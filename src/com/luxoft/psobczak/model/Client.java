@@ -10,15 +10,21 @@ public class Client implements Report {
 	private String name;
     private List<Account> accounts;
     private Account activeAccount;
+    private String email;
+
+
 
 	private float initialOverdraft = 1000;
-    private Gender gender;
+
+
+	private Gender gender;
 
     public Client(String name, Gender gender) {
 
 	this.name = name;
 	this.gender = gender;
 	accounts = new LinkedList<Account>();
+	
     }
     
     public Client(String name) {
@@ -109,6 +115,11 @@ public class Client implements Report {
 	return initialOverdraft;
     }
 
+    public void setInitialOverdraft(float initialOverdraft) {
+		this.initialOverdraft = initialOverdraft;
+	}
+    
+    
     public Gender getGender() {
 	return gender;
     }
@@ -116,6 +127,14 @@ public class Client implements Report {
     public String getName() {
     	return name;
         }
+    
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 
     public String getClientSalutation() {
 	return gender.getGreeting();

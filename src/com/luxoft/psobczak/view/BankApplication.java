@@ -19,7 +19,7 @@ public class BankApplication {
 
 	static Client Adam;
 	static Client Adam2;
-	static Client Anna;
+	public static Client Anna;
 	static Client Cris;
 	static Bank bank;
 	static BankServiceImpl service;
@@ -37,7 +37,11 @@ public class BankApplication {
 			
 		   
 
-			service.addClient(bank, Adam);
+			//service.addClient(bank, Adam);
+			//service.addClient(bank, Anna);
+			
+			bank.getClients().add(Adam);
+			bank.getClients().add(Anna);
 			BankCommander.currentClient = Adam;
 
 			
@@ -45,8 +49,10 @@ public class BankApplication {
 			
 			service.addAccount(Adam, new CheckingAccount(BigDecimal.TEN, BigDecimal.TEN));
 			service.addAccount(Adam, new SavingAccount(BigDecimal.TEN));
+			service.addAccount(Anna, new CheckingAccount(BigDecimal.TEN, BigDecimal.TEN));
 
 			Adam.setActiveAccount(Adam.getAccounts().get(0));
+			Anna.setActiveAccount(Anna.getAccounts().get(0));
 			
 			  
             for (int i=0;i<BankCommander.commands.length;i++) { // show menu
@@ -57,7 +63,7 @@ public class BankApplication {
             int option = new Scanner(System.in).nextInt();
             BankCommander.commands[option].execute();
 			
-			//BankCommander.commands[2].execute();
+			
 			
 
 			bank.printReport();

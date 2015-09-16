@@ -7,8 +7,8 @@ import java.util.Scanner;
 import com.luxoft.psobczak.exceptions.BankException;
 import com.luxoft.psobczak.model.Account;
 import com.luxoft.psobczak.model.Bank;
+import com.luxoft.psobczak.model.CheckingAccount;
 import com.luxoft.psobczak.model.Client;
-import com.luxoft.psobczak.model.ClientRegistrationListener;
 import com.luxoft.psobczak.service.BankService;
 
 public class BankServiceImpl implements BankService {
@@ -20,11 +20,43 @@ public class BankServiceImpl implements BankService {
 	}
 
 	@Override
-	public void addClient(Bank bank, Client client) {
-		bank.getClients().add(client);
-		for(ClientRegistrationListener listeners: bank.getListeners()){
-			listeners.onClientAdded(client);
+	public void addClient(Bank bank) {
+		String email = "text";
+		boolean a = false;
+		System.out.println("Enter client name: ");
+		String name = new Scanner(System.in).nextLine();
+
+		
+		while(a!=true){
+			//boolean a = false;
+			System.out.println("Enter email fo client: ");
+		 email = new Scanner(System.in).nextLine();
+		 a = email.matches("\\w+[@]\\w+[.]\\w+");
+			
 		}
+		
+		
+	
+		
+	//	System.out.println("Enter email fo client: ");
+	//	String email = new Scanner(System.in).nextLine();
+		System.out.println("Enter initial overdraft for client: ");
+		float overdraft = new Scanner(System.in).nextFloat();
+
+		
+		Client newClient = new Client(name);
+		newClient.setInitialOverdraft(overdraft);
+		newClient.setEmail(email);
+		
+		BigDecimal initialoverdraft = new BigDecimal(overdraft);
+		
+		newClient.getAccounts().add(new CheckingAccount(BigDecimal.ZERO, initialoverdraft));
+		
+		bank.getClients().add(newClient);
+		
+/*		for(ClientRegistrationListener listeners: bank.getListeners()){
+			listeners.onClientAdded(client);
+		}*/
 
 	}
 
@@ -91,7 +123,7 @@ public class BankServiceImpl implements BankService {
 		if (client.getActiveAccount() == null) System.out.println("Client doesn't have selected active account");
 		else {
 			
-			System.out.println("Please put deposit value");
+			System.out.println("Please put withdraw value");
 			BigDecimal withdraw = new BigDecimal(new Scanner(System.in).nextLine());
 			try {
 				client.getActiveAccount().withdraw(withdraw);
@@ -101,6 +133,27 @@ public class BankServiceImpl implements BankService {
 			}		
 			}
 		
+	}
+
+	@Override
+	public void transfer(Client clientFirst, Bank bank) {
+		
+		if (clientFirst.getActiveAccount() == null) System.out.println("Client doesn't have selected active account");
+		
+		else{
+		System.out.println("Please put transfer value");
+		BigDecimal transfer = new BigDecimal(new Scanner(System.in).nextLine());
+		
+
+		
+		try {
+			clientFirst.getActiveAccount().withdraw(transfer);
+			BankCommander.currentBank.getClients().get(1).getActiveAccount().deposit(transfer);
+		} catch (BankException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
 	}
 		
 	
