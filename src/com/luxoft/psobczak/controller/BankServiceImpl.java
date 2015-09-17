@@ -34,12 +34,7 @@ public class BankServiceImpl implements BankService {
 		 a = email.matches("\\w+[@]\\w+[.]\\w+");
 			
 		}
-		
-		
-	
-		
-	//	System.out.println("Enter email fo client: ");
-	//	String email = new Scanner(System.in).nextLine();
+
 		System.out.println("Enter initial overdraft for client: ");
 		float overdraft = new Scanner(System.in).nextFloat();
 
@@ -54,9 +49,7 @@ public class BankServiceImpl implements BankService {
 		
 		bank.getClients().add(newClient);
 		
-/*		for(ClientRegistrationListener listeners: bank.getListeners()){
-			listeners.onClientAdded(client);
-		}*/
+
 
 	}
 
@@ -148,7 +141,7 @@ public class BankServiceImpl implements BankService {
 		
 		try {
 			clientFirst.getActiveAccount().withdraw(transfer);
-			BankCommander.currentBank.getClients().get(1).getActiveAccount().deposit(transfer);
+			BankCommander.currentClient.getActiveAccount().deposit(transfer);
 		} catch (BankException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

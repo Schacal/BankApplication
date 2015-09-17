@@ -40,8 +40,9 @@ public class BankApplication {
 			//service.addClient(bank, Adam);
 			//service.addClient(bank, Anna);
 			
-			bank.getClients().add(Adam);
-			bank.getClients().add(Anna);
+			//service.addClient(bank);
+			bank.addClient(Adam);
+			bank.addClient(Anna);
 			BankCommander.currentClient = Adam;
 
 			

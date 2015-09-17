@@ -1,17 +1,19 @@
 package com.luxoft.psobczak.model;
 
 import java.time.LocalTime;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeSet;
 
 public class Bank implements Report {
 
-	private List<Client> clients;
+	private TreeSet<Client> clients;
 	private List<ClientRegistrationListener> listeners;;
 
 	public Bank() {
 
-		clients = new LinkedList<Client>();
+		clients = new TreeSet<Client>();
 		listeners = new LinkedList<ClientRegistrationListener>();
 
 		// nested classes (listeners)
@@ -51,6 +53,7 @@ public class Bank implements Report {
 	}
 
 	@Override
+	//method print report of bank
 	public void printReport() {
 		System.out.println("List of all clients in bank:");
 		for (Client c : clients) {
@@ -58,13 +61,25 @@ public class Bank implements Report {
 		}
 
 	}
+	
+	//method add new client to actual clients database in bank
+	public void addClient(Client newClient){
+		clients.add(newClient);
+		
+	}
+	
+	//method remove selected client from bank database
+	public void removeClient(Client client){
+		clients.remove(client);
+	}
+	
 
 	public List<ClientRegistrationListener> getListeners() {
 		return listeners;
 	}
 
-	public List<Client> getClients() {
-		return clients;
+	public TreeSet<Client> getClients() {
+		return  (TreeSet<Client>) Collections.unmodifiableSet(clients);
 	}
 
 }
