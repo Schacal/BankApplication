@@ -47,7 +47,7 @@ public class BankServiceImpl implements BankService {
 		
 		newClient.getAccounts().add(new CheckingAccount(BigDecimal.ZERO, initialoverdraft));
 		
-		bank.getClients().add(newClient);
+		bank.addClient(newClient);
 		
 
 
@@ -55,7 +55,7 @@ public class BankServiceImpl implements BankService {
 
 	@Override
 	public void removeClient(Bank bank, Client client) {
-		bank.getClients().remove(client);
+		bank.removeClient(client);
 
 	}
 
@@ -74,6 +74,7 @@ public class BankServiceImpl implements BankService {
 	@Override
 	public void findClient(Client client, Bank bank) {
 		if (bank.getClients().contains(client)){
+			
 			BankCommander.currentClient = client;
 			StringBuilder result = new StringBuilder("Client ");
 			result.append(client.getName());

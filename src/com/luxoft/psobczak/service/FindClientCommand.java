@@ -23,7 +23,7 @@ public class FindClientCommand implements Command {
 	}
 
 	@Override
-	public void PrintCommandInfo() {
+	public void printCommandInfo() {
 		System.out.println("Find Client in Bank database.");
 		
 

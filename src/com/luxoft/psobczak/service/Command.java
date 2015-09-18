@@ -4,6 +4,6 @@ public interface Command {
 	
 	void execute();
 	
-	void PrintCommandInfo();
+	void printCommandInfo();
 
 }

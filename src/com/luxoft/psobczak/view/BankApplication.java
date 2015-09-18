@@ -58,7 +58,7 @@ public class BankApplication {
 			  
             for (int i=0;i<BankCommander.commands.length;i++) { // show menu
                   System.out.print(i+") ");
-                  BankCommander.commands[i].PrintCommandInfo();
+                  BankCommander.commands[i].printCommandInfo();
             }
         
             int option = new Scanner(System.in).nextInt();

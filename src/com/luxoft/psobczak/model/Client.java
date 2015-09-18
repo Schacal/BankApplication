@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Client implements Report {
+public class Client implements Report, Comparable<Client> {
 
 
 	private String name;
@@ -142,6 +142,11 @@ public class Client implements Report {
     
     public Account getActiveAccount() {
 		return activeAccount;
+	}
+
+	@Override
+	public int compareTo(Client o) {
+		return this.name.compareTo(o.getName());
 	}
 
 

@@ -12,7 +12,7 @@ public class DepositCommand implements Command {
 	}
 
 	@Override
-	public void PrintCommandInfo() {
+	public void printCommandInfo() {
 		
 		System.out.println("Deposit cash on client account");
 	}

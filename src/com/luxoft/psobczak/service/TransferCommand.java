@@ -13,7 +13,7 @@ public class TransferCommand implements Command {
 	}
 
 	@Override
-	public void PrintCommandInfo() {
+	public void printCommandInfo() {
 		System.out.println("Transfer cash between clients accounts");
 
 	}

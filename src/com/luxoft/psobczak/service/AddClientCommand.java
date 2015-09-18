@@ -13,7 +13,7 @@ public class AddClientCommand implements Command {
 	}
 
 	@Override
-	public void PrintCommandInfo() {
+	public void printCommandInfo() {
 		System.out.println("Add new client to bank");
 
 	}

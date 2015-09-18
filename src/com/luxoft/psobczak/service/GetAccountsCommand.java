@@ -16,7 +16,7 @@ public class GetAccountsCommand implements Command {
 	}
 
 	@Override
-	public void PrintCommandInfo() {
+	public void printCommandInfo() {
 		System.out.println("Print all accounts for current client.");
 
 	}
