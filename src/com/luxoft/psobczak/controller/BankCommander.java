@@ -5,6 +5,7 @@ import com.luxoft.psobczak.model.Client;
 import com.luxoft.psobczak.service.AddClientCommand;
 import com.luxoft.psobczak.service.Command;
 import com.luxoft.psobczak.service.DepositCommand;
+import com.luxoft.psobczak.service.ExitCommand;
 import com.luxoft.psobczak.service.FindClientCommand;
 import com.luxoft.psobczak.service.GetAccountsCommand;
 import com.luxoft.psobczak.service.TransferCommand;
@@ -23,7 +24,8 @@ public class BankCommander {
 			new DepositCommand(),
 			new WithdrawCommand(), 
 			new TransferCommand(), 
-			new AddClientCommand()};
+			new AddClientCommand(), 
+			new ExitCommand()};
 	
 	
 	}

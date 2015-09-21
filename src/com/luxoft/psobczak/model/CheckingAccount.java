@@ -1,10 +1,11 @@
 package com.luxoft.psobczak.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import com.luxoft.psobczak.exceptions.OverDraftLimitExceededException;
 
-public class CheckingAccount extends AbstractAccount {
+public class CheckingAccount extends AbstractAccount implements Comparable<Account>, Serializable {
 
     BigDecimal overDraft;
 
@@ -63,5 +64,11 @@ public class CheckingAccount extends AbstractAccount {
 	System.out.println("Rounded balance on Checking Account: " + Math.round(balance.floatValue()));
 
     }
+
+	@Override
+	public int compareTo(Account o) {
+		
+		return this.overDraft.compareTo(o.getBalance());
+	}
 
 }

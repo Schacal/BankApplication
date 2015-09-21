@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
 
 public class Bank implements Report {
@@ -78,8 +79,8 @@ public class Bank implements Report {
 		return listeners;
 	}
 
-	public TreeSet<Client> getClients() {
-		return  (TreeSet<Client>) Collections.unmodifiableSet(clients);
+	public Set<Client> getClients() {
+		return   Collections.unmodifiableSet(clients);
 	}
 
 }

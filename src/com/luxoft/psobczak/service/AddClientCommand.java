@@ -9,7 +9,6 @@ public class AddClientCommand implements Command {
 	public void execute() {
 		BankServiceImpl.INSTANCE.addClient(BankCommander.currentBank);
 
-
 	}
 
 	@Override

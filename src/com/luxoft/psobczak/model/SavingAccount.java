@@ -1,10 +1,11 @@
 package com.luxoft.psobczak.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import com.luxoft.psobczak.exceptions.NotEnoughFundsException;
 
-public class SavingAccount extends AbstractAccount {
+public class SavingAccount extends AbstractAccount implements Comparable<Account>, Serializable {
 
 
 	public SavingAccount(BigDecimal initialBalance) {
@@ -41,6 +42,13 @@ public class SavingAccount extends AbstractAccount {
 		System.out.println("Rounded balance on Saving Account: "+ Math.round(balance.floatValue()));
 		
 	}
+
+	@Override
+	public int compareTo(Account o) {
+		return this.balance.compareTo(o.getBalance());
+	}
+
+
 
 
 }
