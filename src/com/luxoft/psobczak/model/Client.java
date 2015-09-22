@@ -14,6 +14,8 @@ public class Client implements Report, Comparable<Client>, Serializable {
 	private Account activeAccount;
 	private String email;
 	private Iterator<Account> iterator;
+	private String city;
+
 
 	private float initialOverdraft = 1000;
 
@@ -112,7 +114,7 @@ public class Client implements Report, Comparable<Client>, Serializable {
 	
 	
 	public void addAccount(Account account){
-		accounts.add(account);
+		this.accounts.add(account);
 		setActiveAccount(account);
 	}
 	
@@ -141,6 +143,16 @@ public class Client implements Report, Comparable<Client>, Serializable {
 	public Account getActiveAccount() {
 		return activeAccount;
 	}
+
+	public String getCity() {
+		return city;
+	}
+	
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 
 	@Override
 	public int compareTo(Client o) {
