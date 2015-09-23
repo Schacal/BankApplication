@@ -1,5 +1,7 @@
 package com.luxoft.psobczak.controller;
 
+import java.util.TreeMap;
+
 import com.luxoft.psobczak.model.Bank;
 import com.luxoft.psobczak.model.Client;
 import com.luxoft.psobczak.service.AddClientCommand;
@@ -16,17 +18,28 @@ public class BankCommander {
 	public static Bank currentBank = new Bank();
 	public static Client currentClient;
 	
+	public static TreeMap<String, Command> commands = new TreeMap<String, Command>();
 	
 	
-	public static Command[] commands = {
-			new FindClientCommand(),
-			new GetAccountsCommand(), 
-			new DepositCommand(),
-			new WithdrawCommand(), 
-			new TransferCommand(), 
-			new AddClientCommand(), 
-			new ExitCommand()};
 	
+	public BankCommander(){
+		commands.put("1", new FindClientCommand());
+		commands.put("2", new GetAccountsCommand());
+		commands.put("3", new DepositCommand());
+		commands.put("4", new WithdrawCommand());
+		commands.put("5", new TransferCommand());
+		commands.put("6", new AddClientCommand());
+		commands.put("7", new ExitCommand());
+		
+	}
+	
+	public static void registerCommand(String name, Command command){
+		commands.put(name, command);
+	}
+	
+	public static void remove(String name){
+		commands.remove(name);
+	}
 	
 	}
 

@@ -1,0 +1,10 @@
+accounttype=c;balance=0;overdraft=50;name=John;gender=m;
+accounttype=c;balance=0;overdraft=50;name=Mark;gender=m;
+accounttype=c;balance=0;overdraft=50;name=Anna;gender=f;
+accounttype=c;balance=0;overdraft=50;name=Bob;gender=m;
+accounttype=c;balance=0;overdraft=50;name=Filip;gender=m;
+accounttype=c;balance=0;overdraft=50;name=Dirk;gender=m;
+accounttype=c;balance=0;overdraft=50;name=Maria;gender=f;
+accounttype=c;balance=0;overdraft=50;name=Paul;gender=m;
+accounttype=c;balance=0;overdraft=50;name=Eva;gender=f;
+accounttype=c;balance=0;overdraft=50;name=Robert;gender=m;

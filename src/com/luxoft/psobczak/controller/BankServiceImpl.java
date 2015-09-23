@@ -141,4 +141,13 @@ public class BankServiceImpl implements BankService {
 		}
 	}
 
+	@Override
+	public Client getClient(Bank bank, String clientName) {
+		if(bank.getClientsByName().get(clientName) == null){
+			System.out.println("Client not exist in bank");
+		}
+		
+		return bank.getClientsByName().get(clientName);
+	}
+
 }

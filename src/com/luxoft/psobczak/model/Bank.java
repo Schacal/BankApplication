@@ -4,18 +4,23 @@ import java.time.LocalTime;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class Bank implements Report {
 
 	private TreeSet<Client> clients;
-	private List<ClientRegistrationListener> listeners;;
+	private List<ClientRegistrationListener> listeners;
+	private TreeMap<String, Client> clientsByName;
+
 
 	public Bank() {
 
 		clients = new TreeSet<Client>();
 		listeners = new LinkedList<ClientRegistrationListener>();
+		clientsByName = new TreeMap<String, Client>();
 
 		// nested classes (listeners)
 		class EmailNotificationListener implements ClientRegistrationListener {
@@ -66,6 +71,7 @@ public class Bank implements Report {
 	//method add new client to actual clients database in bank
 	public void addClient(Client newClient){
 		clients.add(newClient);
+		clientsByName.put(newClient.getName(), newClient);
 		
 	}
 	
@@ -82,5 +88,10 @@ public class Bank implements Report {
 	public Set<Client> getClients() {
 		return   Collections.unmodifiableSet(clients);
 	}
+	
+	public Map<String, Client> getClientsByName() {
+		return Collections.unmodifiableMap(clientsByName);
+	}
+
 
 }

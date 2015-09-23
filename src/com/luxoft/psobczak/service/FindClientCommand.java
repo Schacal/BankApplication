@@ -18,7 +18,9 @@ public class FindClientCommand implements Command {
 
 		String temporaryName = new Scanner(System.in).nextLine();
 		
-		BankServiceImpl.INSTANCE.findClient(temporaryName, BankCommander.currentBank);
+		//BankServiceImpl.INSTANCE.findClient(temporaryName, BankCommander.currentBank);
+		BankServiceImpl.INSTANCE.getClient(BankCommander.currentBank, temporaryName);
+		System.out.println(BankServiceImpl.INSTANCE.getClient(BankCommander.currentBank, temporaryName));
 
 	}
 
