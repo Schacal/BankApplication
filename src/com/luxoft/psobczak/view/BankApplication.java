@@ -15,66 +15,60 @@ import com.luxoft.psobczak.model.SavingAccount;
 
 public class BankApplication {
 
-	static Bank bank;
-	static BankServiceImpl service;
+    static Bank bank;
+    static BankServiceImpl service;
 
-	public static void main(String[] args) throws BankException {
-		// initializing required objects
-		initialize();
-		BankReport bankReport = new BankReport();
+    public static void main(String[] args) throws BankException {
+	// initializing required objects
+	initialize();
+	BankReport bankReport = new BankReport();
 
-		//bankReport.getClientsByCity(bank);
+	// show program menu
+	while (true) {
 
-		// show program menu
-		while (true) {
-			
-			for(String command : BankCommander.commands.keySet()){
-				
-				System.out.print(command+") "); 
-				BankCommander.commands.get(command).printCommandInfo();
-			}
+	    for (String command : BankCommander.commands.keySet()) {
 
-			String option = new Scanner(System.in).nextLine();
-			BankCommander.commands.get(option).execute();
+		System.out.print(command + ") ");
+		BankCommander.commands.get(command).printCommandInfo();
+	    }
 
-		}
+	    String option = new Scanner(System.in).nextLine();
+	    BankCommander.commands.get(option).execute();
 
 	}
 
-	public static void initialize() {
+    }
 
-		bank = BankCommander.currentBank;
+    public static void initialize() {
 
-		service = BankServiceImpl.INSTANCE;
-		BankCommander bankCommander = new BankCommander();
-		
-		BankFeedService feed = new BankFeedService();
-		feed.loadFeed("clients.txt");
+	bank = BankCommander.currentBank;
 
-		// creating 100 clients
-		for (int i = 0; i < 100; i++) {
+	service = BankServiceImpl.INSTANCE;
+	BankCommander bankCommander = new BankCommander();
 
-			Client testClient = new Client("Client " + i);
-			testClient.addAccount(new CheckingAccount(new BigDecimal(-9), BigDecimal.TEN));
+	BankFeedService feed = new BankFeedService();
+	feed.loadFeed("clients.txt");
 
-			testClient.addAccount(new SavingAccount(BigDecimal.ZERO));
+	// creating 100 clients
+	for (int i = 0; i < 100; i++) {
 
-			if (i < 50) {
-				testClient.setCity("Wroclaw");
-			} else {
-				testClient.setCity("Cracow");
-			}
+	    Client testClient = new Client("Client " + i);
+	    testClient.addAccount(new CheckingAccount(new BigDecimal(-9), BigDecimal.TEN));
 
-			// System.out.println(testClient.getCity());
+	    testClient.addAccount(new SavingAccount(BigDecimal.ZERO));
 
-			bank.addClient(testClient);
+	    if (i < 50) {
+		testClient.setCity("Wroclaw");
+	    } else {
+		testClient.setCity("Cracow");
+	    }
 
-			// service.addAccount(testClient, new
-			// SavingAccount(BigDecimal.ZERO));
-			BankCommander.currentClient = testClient;
+	    bank.addClient(testClient);
 
-		}
+	    BankCommander.currentClient = testClient;
 
 	}
+
+    }
 
 }
