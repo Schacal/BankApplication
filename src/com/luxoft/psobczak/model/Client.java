@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+
+import com.luxoft.psobczak.exceptions.FeedException;
 
 public class Client implements Report, Comparable<Client>, Serializable {
 
@@ -15,7 +18,6 @@ public class Client implements Report, Comparable<Client>, Serializable {
 	private String email;
 	private Iterator<Account> iterator;
 	private String city;
-
 
 	private float initialOverdraft = 1000;
 
@@ -91,15 +93,15 @@ public class Client implements Report, Comparable<Client>, Serializable {
 	}
 
 	public Set<Account> getAccounts() {
-		return  Collections.unmodifiableSet(accounts);
+		return Collections.unmodifiableSet(accounts);
 	}
 
 	@Override
 	public void printReport() {
 		System.out.println("Client: " + getClientSalutation() + name + " have total accounts: " + this.accounts.size());
-		
+
 		iterator = accounts.iterator();
-		while(iterator.hasNext()){
+		while (iterator.hasNext()) {
 			iterator.next().printReport();
 		}
 	}
@@ -111,14 +113,11 @@ public class Client implements Report, Comparable<Client>, Serializable {
 	public void setInitialOverdraft(float initialOverdraft) {
 		this.initialOverdraft = initialOverdraft;
 	}
-	
-	
-	public void addAccount(Account account){
+
+	public void addAccount(Account account) {
 		this.accounts.add(account);
 		setActiveAccount(account);
 	}
-	
-	
 
 	public Gender getGender() {
 		return gender;
@@ -147,12 +146,39 @@ public class Client implements Report, Comparable<Client>, Serializable {
 	public String getCity() {
 		return city;
 	}
-	
 
 	public void setCity(String city) {
 		this.city = city;
 	}
 
+	public void createAccount(Map<String, String> feed) {
+		Account acc;
+		if (feed.get("accounttype").equals("c")) {
+			float balance = Float.valueOf(feed.get("balance"));
+			BigDecimal balanceAsBigDecimal = new BigDecimal(balance);
+
+			float overdraft = Float.valueOf(feed.get("overdraft"));
+			BigDecimal overdraftAsBigDecimal = new BigDecimal(overdraft);
+
+			acc = new CheckingAccount(balanceAsBigDecimal, overdraftAsBigDecimal);
+
+			accounts.add(acc);
+		}
+
+		else if (feed.get("accounttype").equals("s")) {
+			float balance = Float.valueOf(feed.get("balance"));
+			BigDecimal balanceAsBigDecimal = new BigDecimal(balance);
+
+			acc = new SavingAccount(balanceAsBigDecimal);
+
+			accounts.add(acc);
+		}
+		
+		else {
+			throw new FeedException("Account type not found in external file");
+		}
+
+	}
 
 	@Override
 	public int compareTo(Client o) {

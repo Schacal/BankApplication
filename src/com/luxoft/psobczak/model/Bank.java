@@ -68,6 +68,22 @@ public class Bank implements Report {
 
 	}
 	
+	public void parseFeed(Map<String, String> feed){
+		String name = feed.get("name");
+		
+		Client client = clientsByName.get(name);
+		if(client == null){
+			Gender genderOfNewClient;
+			if (feed.get("gender").equals("m")) genderOfNewClient = Gender.MALE;
+			else genderOfNewClient = Gender.FEMALE;
+			
+			client = new Client(name, genderOfNewClient);
+			client.createAccount(feed);
+			addClient(client);
+		   
+		}
+	}
+	
 	//method add new client to actual clients database in bank
 	public void addClient(Client newClient){
 		clients.add(newClient);

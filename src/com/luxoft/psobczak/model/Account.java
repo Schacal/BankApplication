@@ -1,6 +1,7 @@
 package com.luxoft.psobczak.model;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 import com.luxoft.psobczak.exceptions.BankException;
 
@@ -11,4 +12,5 @@ public interface Account extends Report {
 	public void withdraw(BigDecimal x) throws BankException;
 	
 	public void decimalValue();
+	
 }

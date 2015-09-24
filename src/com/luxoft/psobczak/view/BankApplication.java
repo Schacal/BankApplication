@@ -7,6 +7,7 @@ import com.luxoft.psobczak.controller.BankCommander;
 import com.luxoft.psobczak.controller.BankServiceImpl;
 import com.luxoft.psobczak.exceptions.BankException;
 import com.luxoft.psobczak.model.Bank;
+import com.luxoft.psobczak.model.BankFeedService;
 import com.luxoft.psobczak.model.BankReport;
 import com.luxoft.psobczak.model.CheckingAccount;
 import com.luxoft.psobczak.model.Client;
@@ -46,6 +47,9 @@ public class BankApplication {
 
 		service = BankServiceImpl.INSTANCE;
 		BankCommander bankCommander = new BankCommander();
+		
+		BankFeedService feed = new BankFeedService();
+		feed.loadFeed("clients.txt");
 
 		// creating 100 clients
 		for (int i = 0; i < 100; i++) {

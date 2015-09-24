@@ -2,6 +2,7 @@ package com.luxoft.psobczak.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Map;
 
 import com.luxoft.psobczak.exceptions.OverDraftLimitExceededException;
 
@@ -70,5 +71,7 @@ public class CheckingAccount extends AbstractAccount implements Comparable<Accou
 		
 		return this.overDraft.compareTo(o.getBalance());
 	}
+
+
 
 }
