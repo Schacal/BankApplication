@@ -16,6 +16,7 @@ public class BankServer {
 	
 	
 	public void run() {
+		System.out.println("Server");
 		
 		try {
 			serversocket = new ServerSocket(5656);
