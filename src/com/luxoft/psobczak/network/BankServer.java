@@ -18,9 +18,10 @@ public class BankServer {
 		BankServer server = new BankServer();
 		server.run();
 	}
-
+	
 	public void run() {
-		System.out.println("Server");
+		System.out.println("Server started");
+		
 
 		try {
 			serversocket = new ServerSocket(5656);
@@ -41,6 +42,8 @@ public class BankServer {
 					sendMessageToClient("Please enter command:> ");
 					messageFromClient = (String) in.readObject();
 					System.out.println(messageFromClient);
+					
+					
 
 				}
 

@@ -33,7 +33,7 @@ public class BankClient {
 
 			System.out.println(in.readObject());
 
-			while (!(in.readObject().equals(new Boolean(true)))) {
+			while (!(in.readObject().equals(Boolean.TRUE))) {
 
 				System.out.println(in.readObject());
 
