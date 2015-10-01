@@ -24,6 +24,8 @@ public class BankApplication {
 	initialize();
 	BankReport bankReport = new BankReport();
 	System.out.println(bankReport.getAccountsNumber(bank));
+	System.out.println("test1");
+	System.out.println("test2");
 
 	// show program menu
 	while (true) {
