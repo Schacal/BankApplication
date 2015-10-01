@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public abstract class AbstractAccount implements Account {
 	
 	protected BigDecimal balance;
+	public int id;
 
 	@Override
 	public BigDecimal getBalance() {	

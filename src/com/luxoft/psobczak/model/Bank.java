@@ -14,10 +14,12 @@ public class Bank implements Report {
 	private TreeSet<Client> clients;
 	private List<ClientRegistrationListener> listeners;
 	private TreeMap<String, Client> clientsByName;
+	public int id;
+
 
 
 	public Bank() {
-
+		id=0;
 		clients = new TreeSet<Client>();
 		listeners = new LinkedList<ClientRegistrationListener>();
 		clientsByName = new TreeMap<String, Client>();
@@ -108,6 +110,7 @@ public class Bank implements Report {
 	public Map<String, Client> getClientsByName() {
 		return Collections.unmodifiableMap(clientsByName);
 	}
+
 
 
 }
