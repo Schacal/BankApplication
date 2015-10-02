@@ -12,7 +12,6 @@ import com.luxoft.psobczak.model.BankReport;
 import com.luxoft.psobczak.model.CheckingAccount;
 import com.luxoft.psobczak.model.Client;
 import com.luxoft.psobczak.model.SavingAccount;
-import com.luxoft.psobczak.network.BankServer;
 
 public class BankApplication {
 
@@ -23,9 +22,6 @@ public class BankApplication {
 	// initializing required objects
 	initialize();
 	BankReport bankReport = new BankReport();
-	System.out.println(bankReport.getAccountsNumber(bank));
-	System.out.println("test1");
-	System.out.println("test2");
 
 	// show program menu
 	while (true) {
@@ -38,6 +34,7 @@ public class BankApplication {
 
 	    String option = new Scanner(System.in).nextLine();
 	    BankCommander.commands.get(option).execute();
+	    
 
 	}
 
