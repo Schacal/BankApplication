@@ -182,6 +182,12 @@ public class Client implements Report, Comparable<Client>, Serializable {
 		}
 
 	}
+	
+	public void addAccountsSetToClient(Set<Account> newSet){
+		this.accounts.addAll(newSet);
+	}
+	
+	
 
 	@Override
 	public int compareTo(Client o) {

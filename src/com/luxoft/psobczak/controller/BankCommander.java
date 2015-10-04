@@ -15,7 +15,7 @@ import com.luxoft.psobczak.service.WithdrawCommand;
 
 public class BankCommander {
 	
-	public static Bank currentBank = new Bank();
+	public static Bank currentBank = new Bank("Deutche Bank");
 	public static Client currentClient;
 	
 	public static TreeMap<String, Command> commands = new TreeMap<String, Command>();
