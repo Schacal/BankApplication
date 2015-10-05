@@ -6,8 +6,10 @@ package com.luxoft.psobczak.exceptions;
 
 public class ClientNotFoundException extends RuntimeException {
 	
+	
 	public ClientNotFoundException(String clienName) {
 		super(clienName + " not found in database");
+		
 	}
 
 }

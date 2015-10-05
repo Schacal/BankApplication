@@ -11,7 +11,7 @@ public class ExitCommand implements Command {
 
 	@Override
 	public void printCommandInfo() {
-		System.out.println("Exit program");
+		System.out.println("-----Exit program-----");
 
 	}
 

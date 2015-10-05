@@ -8,6 +8,8 @@ import com.luxoft.psobczak.model.Bank;
 import com.luxoft.psobczak.model.Client;
 import com.luxoft.psobczak.service.AddClientCommand;
 import com.luxoft.psobczak.service.Command;
+import com.luxoft.psobczak.service.CurrentClientAndBank;
+import com.luxoft.psobczak.service.DBRemoveClientCommand;
 import com.luxoft.psobczak.service.DBSelectBankCommander;
 import com.luxoft.psobczak.service.DepositCommand;
 import com.luxoft.psobczak.service.ExitCommand;
@@ -33,7 +35,9 @@ public class BankCommander {
 		commands.put("5", new TransferCommand());
 		commands.put("6", new AddClientCommand());
 		commands.put("7", new DBSelectBankCommander());
-		commands.put("8", new ExitCommand());
+		commands.put("8", new DBRemoveClientCommand());
+		commands.put("9", new CurrentClientAndBank());		
+		commands.put("0", new ExitCommand());
 		
 	}
 	

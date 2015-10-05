@@ -149,16 +149,18 @@ public class ClientDaoImpl extends BaseDaoImpl implements ClientDAO {
 	@Override
 	public void removeClient(Client clientToRemove, Bank bank) throws DAOException {
 		AccountDaoImpl removeAccounts = new AccountDaoImpl();
+		removeAccounts.removeByClientID(clientToRemove.id);
 		
 		String sql = "DELETE FROM CLIENTS WHERE NAME = ? AND BANK = ?";
 		PreparedStatement statement;
 		try{
 			openConnection();
+			
 			statement = super.conn.prepareStatement(sql);
 			statement.setString(1, clientToRemove.getName());
 			statement.setInt(2, bank.getId());		
 			statement.executeUpdate();
-			removeAccounts.removeByClientID(clientToRemove.id);
+			
 			
 		}
 		catch(SQLException e){
