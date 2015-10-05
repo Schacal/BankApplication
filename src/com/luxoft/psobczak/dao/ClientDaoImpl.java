@@ -8,8 +8,6 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.TreeSet;
 
 import com.luxoft.psobczak.exceptions.ClientNotFoundException;
@@ -59,8 +57,8 @@ public class ClientDaoImpl extends BaseDaoImpl implements ClientDAO {
 	}
 
 	@Override
-	public List<Client> getAllClients(Bank bank) throws DAOException {
-		List<Client> listOfClientsInBank = new LinkedList<Client>();
+	public TreeSet<Client> getAllClients(Bank bank) throws DAOException {
+		TreeSet<Client> listOfClientsInBank = new TreeSet<Client>();
 		String sql = "SELECT * FROM CLIENTS WHERE BANK = ?";
 
 		PreparedStatement statement;
@@ -124,14 +122,51 @@ public class ClientDaoImpl extends BaseDaoImpl implements ClientDAO {
 	}
 
 	@Override
-	public void saveClient(Client clientToSave) throws DAOException {
-		// TODO Auto-generated method stub
+	public void saveClient(Client clientToSave, Bank bank) throws DAOException {
+		String sql = "INSERT INTO CLIENTS (NAME, CITY, EMAIL, GENDER, BANK) VALUES (?,?,?,?,?)";
+		PreparedStatement statement;
+		try{
+			openConnection();
+			statement = super.conn.prepareStatement(sql);
+			statement.setString(1, clientToSave.getName());
+			statement.setString(2, clientToSave.getCity());
+			statement.setString(3, clientToSave.getEmail());
+			statement.setString(4, (clientToSave.getGender() == Gender.MALE) ? "MALE" : "FEMALE");
+			statement.setInt(5, bank.getId());
+			
+			statement.executeUpdate();
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			closeConnection();
+		}
 
 	}
 
 	@Override
-	public void removeClient(Client clientToRemove) throws DAOException {
-		// TODO Auto-generated method stub
+	public void removeClient(Client clientToRemove, Bank bank) throws DAOException {
+		AccountDaoImpl removeAccounts = new AccountDaoImpl();
+		
+		String sql = "DELETE FROM CLIENTS WHERE NAME = ? AND BANK = ?";
+		PreparedStatement statement;
+		try{
+			openConnection();
+			statement = super.conn.prepareStatement(sql);
+			statement.setString(1, clientToRemove.getName());
+			statement.setInt(2, bank.getId());		
+			statement.executeUpdate();
+			removeAccounts.removeByClientID(clientToRemove.id);
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			closeConnection();
+		}
 	}
 
 }

@@ -106,7 +106,7 @@ public class Bank implements Report {
 	}
 
 	public Set<Client> getClients() {
-		return   Collections.unmodifiableSet(clients);
+		return   clients;
 	}
 	
 	public Map<String, Client> getClientsByName() {

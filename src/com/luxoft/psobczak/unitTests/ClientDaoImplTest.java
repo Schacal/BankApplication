@@ -6,10 +6,9 @@ package com.luxoft.psobczak.unitTests;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
+import java.util.TreeSet;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.luxoft.psobczak.dao.ClientDaoImpl;
@@ -24,8 +23,8 @@ public class ClientDaoImplTest {
 	Bank bank;
 	Client client;
 	Client preapredCLient;
-	List<Client> clientList;
-
+	Client clientToSave;
+	TreeSet<Client> clientList;
 
 	@Before
 	public void setUp() throws Exception {
@@ -35,42 +34,48 @@ public class ClientDaoImplTest {
 		preapredCLient = new Client("Malcolm Lawrence", Gender.FEMALE);
 		preapredCLient.setCity("Bearberry");
 		preapredCLient.setEmail("convallis.est.vitae@ultrices.edu");
+
+		clientToSave = new Client("Test Client", Gender.MALE);
+		clientToSave.setCity("Warsaw");
+		clientToSave.setEmail("testmail@gmail.com");
+
 	}
-
-
+	
 	@Test
 	public void testFindClientByName() throws DAOException {
 		client = testedClass.findClientByName(bank, "Malcolm Lawrence");
 		assertEquals(preapredCLient, client);
 	}
 	
+	
+	
 	@Test(expected = ClientNotFoundException.class)
 	public void testFindClientByNameException() throws DAOException {
 		client = testedClass.findClientByName(bank, "Lawrence");
 	}
 	
-	
-
-	
 	@Test
 	public void testGetAllClients() throws DAOException {
 		clientList = testedClass.getAllClients(bank);
-		int i = 1;
-		for(Client a : clientList){
-			System.out.println(i + a.toString());
-			i++;
-		}
+
 	}
 
-	@Ignore
 	@Test
-	public void testSaveClient() {
-		
+	public void testSaveClient() throws DAOException {
+		Client check;
+		testedClass.saveClient(clientToSave, bank);
+		check = testedClass.findClientByName(bank, clientToSave.getName());
+		assertEquals(clientToSave, check);
+
+		testedClass.removeClient(clientToSave, bank);
+
 	}
 
-	@Ignore
-	@Test
-	public void testRemoveClient() {
+	@Test(expected = ClientNotFoundException.class)
+	public void testRemoveClient() throws DAOException {
+		testedClass.saveClient(clientToSave, bank);
+		testedClass.removeClient(clientToSave, bank);
+		Client check = testedClass.findClientByName(bank, clientToSave.getName());
 
 	}
 

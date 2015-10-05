@@ -9,6 +9,7 @@ public class SavingAccount extends AbstractAccount implements Comparable<Account
 
 
 	public SavingAccount(BigDecimal initialBalance) {
+		super.id = 0;
 		balance = initialBalance;
 	}
 
