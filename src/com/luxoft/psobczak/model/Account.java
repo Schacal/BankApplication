@@ -7,6 +7,7 @@ import com.luxoft.psobczak.exceptions.BankException;
 
 public interface Account extends Report {
 
+
 	public BigDecimal getBalance();
 
 	public void deposit(BigDecimal x);

@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/piotr/Downloads/h2/bin/h2-1.4.189.jar"/>
+	<classpathentry kind="lib" path="C:/Users/psobczak/Documents/h2/bin/h2-1.4.189.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

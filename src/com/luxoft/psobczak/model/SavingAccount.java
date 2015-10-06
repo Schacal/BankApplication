@@ -6,10 +6,12 @@ import java.math.BigDecimal;
 import com.luxoft.psobczak.exceptions.NotEnoughFundsException;
 
 public class SavingAccount extends AbstractAccount implements Comparable<Account>, Serializable {
+	
+	public int id;
 
 
 	public SavingAccount(BigDecimal initialBalance) {
-		super.id = 0;
+		this.id = 0;
 		balance = initialBalance;
 	}
 
@@ -32,7 +34,7 @@ public class SavingAccount extends AbstractAccount implements Comparable<Account
 			throw new NotEnoughFundsException(x, this.balance);
 
 	}
-	
+
 	@Override
 	public String toString() {
 		return "SavingAccount balance= " + balance;
@@ -40,16 +42,22 @@ public class SavingAccount extends AbstractAccount implements Comparable<Account
 
 	@Override
 	public void decimalValue() {
-		System.out.println("Rounded balance on Saving Account: "+ Math.round(balance.floatValue()));
-		
+		System.out.println("Rounded balance on Saving Account: " + Math.round(balance.floatValue()));
+
 	}
 
 	@Override
 	public int compareTo(Account o) {
 		return this.balance.compareTo(o.getBalance());
 	}
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 
-
+	
 
 }

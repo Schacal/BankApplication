@@ -11,7 +11,8 @@ public class CurrentClientAndBank implements Command {
 
 	@Override
 	public void execute() throws DAOException {
-		System.out.println("Current Client: " + BankCommander.currentClient.getName() + ", and current bank: " + BankCommander.currentBank.bankName);
+		System.out.println("Current Client: " + BankCommander.currentClient.getName() + ", and current bank: " + BankCommander.currentBank.bankName+
+				" current account: " + BankCommander.currentClient.getActiveAccount());
 
 	}
 

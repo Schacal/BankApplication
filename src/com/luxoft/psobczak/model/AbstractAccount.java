@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public abstract class AbstractAccount implements Account {
 	
 	protected BigDecimal balance;
-	public int id;
+	protected int id;
 
 	@Override
 	public BigDecimal getBalance() {	
@@ -24,6 +24,14 @@ public abstract class AbstractAccount implements Account {
 		result.append(balance);
 		
 		return result.toString();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	

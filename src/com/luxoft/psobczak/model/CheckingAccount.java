@@ -9,9 +9,12 @@ import com.luxoft.psobczak.exceptions.OverDraftLimitExceededException;
 public class CheckingAccount extends AbstractAccount implements Comparable<Account>, Serializable {
 
 	BigDecimal overDraft;
+	public int id;
+
+
 
 	public CheckingAccount(BigDecimal balance, BigDecimal overDraft) {
-		super.id = 0;
+		this.id = 0;
 		super.balance = balance;
 		this.overDraft = overDraft;
 	}
@@ -71,6 +74,15 @@ public class CheckingAccount extends AbstractAccount implements Comparable<Accou
 	public int compareTo(Account o) {
 
 		return this.overDraft.compareTo(o.getBalance());
+	}
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

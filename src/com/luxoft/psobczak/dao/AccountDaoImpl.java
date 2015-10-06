@@ -18,7 +18,7 @@ public class AccountDaoImpl extends BaseDaoImpl implements AccountDAO {
 
 	@Override
 	public void saveAccount(Account accountToSave, Client client) throws DAOException {
-		String sql = "INSERT INTO ACCOUNTS (TYPE, BALANCE, OVERDRAFT, CLIENT_ID) VALUES (?,?,?,?)";
+		String sql = "UPDATE ACCOUNTS SET TYPE = ?, BALANCE = ?, OVERDRAFT = ? WHERE CLIENT_ID = ? AND id = ?";
 		PreparedStatement statement;
 		try {
 			openConnection();
@@ -28,6 +28,7 @@ public class AccountDaoImpl extends BaseDaoImpl implements AccountDAO {
 			statement.setInt(2, accountToSave.getBalance().intValue());			
 			statement.setInt(3, (accountToSave instanceof CheckingAccount) ? ((CheckingAccount) accountToSave).getOverDraft().intValue() : 0);
 			statement.setInt(4, client.id);
+			statement.setInt(5, (accountToSave instanceof CheckingAccount) ? ((CheckingAccount) accountToSave).id : ((SavingAccount) accountToSave).id);
 			statement.executeUpdate();
 		}
 		catch(SQLException e){

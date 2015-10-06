@@ -1,12 +1,13 @@
 package com.luxoft.psobczak.service;
 
+import com.luxoft.psobczak.exceptions.DAOException;
 import com.luxoft.psobczak.model.Account;
 import com.luxoft.psobczak.model.Bank;
 import com.luxoft.psobczak.model.Client;
 
 public interface BankService {
 
-    public void addClient(Bank bank);
+    public void addClient(Bank bank) throws DAOException;
 
     public void removeClient(Bank bank, Client client);
 

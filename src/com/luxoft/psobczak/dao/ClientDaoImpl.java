@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 import com.luxoft.psobczak.exceptions.ClientNotFoundException;
@@ -41,6 +42,7 @@ public class ClientDaoImpl extends BaseDaoImpl implements ClientDAO {
 				client.setCity(result.getString("CITY"));
 				client.setEmail(result.getString("EMAIL"));
 				client.id = result.getInt("ID");
+				client.addAccountsSetToClient(getAccountsFromClient(client.id));
 				return client;
 			} else {
 				throw new ClientNotFoundException(clientName);
@@ -74,6 +76,9 @@ public class ClientDaoImpl extends BaseDaoImpl implements ClientDAO {
 				client.setEmail(result.getString("EMAIL"));
 				client.id = result.getInt("ID");
 				client.addAccountsSetToClient(getAccountsFromClient(client.id));
+				for(Account account: client.getAccounts()){
+					client.setActiveAccount(account);
+				}
 				listOfClientsInBank.add(client);
 			}
 		} catch (SQLException e) {
@@ -95,16 +100,20 @@ public class ClientDaoImpl extends BaseDaoImpl implements ClientDAO {
 
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				Account newAccount;
+				
 
 				if (result.getString("TYPE").equalsIgnoreCase("SavingAccount")) {
 					BigDecimal initialBalance = new BigDecimal(result.getFloat("BALANCE"));
-					newAccount = new SavingAccount(initialBalance);
+					SavingAccount newAccount = new SavingAccount(initialBalance);
+					newAccount.id = result.getInt("id");
+					
+					
 					accounts.add(newAccount);
 				} else if (result.getString("TYPE").equalsIgnoreCase("CheckingAccount")) {
 					BigDecimal initialBalance = new BigDecimal(result.getFloat("BALANCE"));
 					BigDecimal initialOverdraft = new BigDecimal(result.getFloat("OVERDRAFT"));
-					newAccount = new CheckingAccount(initialBalance, initialOverdraft);
+					CheckingAccount newAccount = new CheckingAccount(initialBalance, initialOverdraft);
+					newAccount.id = result.getInt("id");
 					accounts.add(newAccount);
 				}
 
