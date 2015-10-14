@@ -10,9 +10,9 @@ import com.luxoft.psobczak.model.Bank;
 
 public interface BankDAO {
 
-	Bank getBankByName(String bankName) throws DAOException, BankNotFoundException;
+	Bank getBankByName(String name) throws DAOException, BankNotFoundException;
 
-	void saveBank(Bank bankToSave) throws DAOException;
+	void save(Bank bank) throws DAOException;
 
-	void removeBank(Bank bankToRemove) throws DAOException;
+	void remove(Bank bank) throws DAOException;
 }

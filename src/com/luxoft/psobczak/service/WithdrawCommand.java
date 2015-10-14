@@ -12,7 +12,7 @@ public class WithdrawCommand implements Command {
 		BankServiceImpl.INSTANCE.withdraw(BankCommander.currentClient, BankCommander.currentBank);
 		AccountDaoImpl accaountDao = new AccountDaoImpl();
 
-		accaountDao.saveAccount(BankCommander.currentClient.getActiveAccount(), BankCommander.currentClient);
+		accaountDao.save(BankCommander.currentClient.getActiveAccount(), BankCommander.currentClient);
 	}
 
 	@Override

@@ -54,9 +54,9 @@ public class BankServiceImpl implements BankService {
 		BigDecimal initialoverdraft = new BigDecimal(overdraft);
 
 		
-		clientDao.saveClient(newClient, bank);
+		clientDao.save(newClient, bank);
 		Account newAccount = new CheckingAccount(BigDecimal.ZERO, initialoverdraft);
-		accountDao.addAccount(newAccount, clientDao.findClientByName(bank, newClient.getName()));
+		accountDao.add(newAccount, clientDao.findClientByName(bank, newClient.getName()));
 		bank.addClient(newClient);
 		System.out.println("Client " + newClient.getName() + " has been added");
 

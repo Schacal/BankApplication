@@ -39,7 +39,7 @@ public class BankClient {
 
 				Scanner inputTextFromClient = new Scanner(System.in);
 				message = inputTextFromClient.nextLine();
-
+				
 				sendMessageToCServer(message);
 
 			}

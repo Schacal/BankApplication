@@ -47,7 +47,7 @@ public class BankDaoImplTest {
 
 	@Test
 	public void saveBankTest() throws Exception {
-		bankdao.saveBank(bankToSave);
+		bankdao.save(bankToSave);
 		testBank = bankdao.getBankByName(bankToSave.bankName);
 		assertEquals(bankToSave.bankName, testBank.bankName);
 
@@ -55,8 +55,8 @@ public class BankDaoImplTest {
 
 	@Test(expected = BankNotFoundException.class)
 	public void removeBankTest() throws Exception {
-		bankdao.saveBank(bankToSave);
-		bankdao.removeBank(bankToSave);
+		bankdao.save(bankToSave);
+		bankdao.remove(bankToSave);
 		testBank = bankdao.getBankByName(bankToSave.bankName);
 		assertEquals(bankToSave.bankName, testBank.bankName);
 

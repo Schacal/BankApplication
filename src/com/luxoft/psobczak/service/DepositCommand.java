@@ -11,7 +11,7 @@ public class DepositCommand implements Command {
 	public void execute() throws DAOException {
 		AccountDaoImpl accaountDao = new AccountDaoImpl();
 		BankServiceImpl.INSTANCE.deposit(BankCommander.currentClient, BankCommander.currentBank);
-		accaountDao.saveAccount(BankCommander.currentClient.getActiveAccount(), BankCommander.currentClient);
+		accaountDao.save(BankCommander.currentClient.getActiveAccount(), BankCommander.currentClient);
 	}
 
 	@Override

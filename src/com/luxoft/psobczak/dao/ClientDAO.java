@@ -15,7 +15,7 @@ public interface ClientDAO {
 
 	TreeSet<Client> getAllClients(Bank bank) throws DAOException;
 
-	void saveClient(Client clientToSave, Bank bank) throws DAOException;
+	void save(Client client, Bank bank) throws DAOException;
 
-	void removeClient(Client clientToRemove, Bank bank) throws DAOException;
+	void remove(Client client, Bank bank) throws DAOException;
 }

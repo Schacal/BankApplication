@@ -63,18 +63,18 @@ public class ClientDaoImplTest {
 	@Test
 	public void testSaveClient() throws DAOException {
 		Client check;
-		testedClass.saveClient(clientToSave, bank);
+		testedClass.save(clientToSave, bank);
 		check = testedClass.findClientByName(bank, clientToSave.getName());
 		assertEquals(clientToSave, check);
 
-		testedClass.removeClient(clientToSave, bank);
+		testedClass.remove(clientToSave, bank);
 
 	}
 
 	@Test(expected = ClientNotFoundException.class)
 	public void testRemoveClient() throws DAOException {
-		testedClass.saveClient(clientToSave, bank);
-		testedClass.removeClient(clientToSave, bank);
+		testedClass.save(clientToSave, bank);
+		testedClass.remove(clientToSave, bank);
 		Client check = testedClass.findClientByName(bank, clientToSave.getName());
 
 	}

@@ -6,10 +6,10 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class BankServer {
+public class BankServer implements Runnable{
 
 	ServerSocket serversocket;
-	Socket connect;
+	public Socket connect;
 	ObjectOutputStream out;
 	ObjectInputStream in;
 	String messageFromClient;
@@ -20,13 +20,15 @@ public class BankServer {
 	}
 	
 	public void run() {
+		
+	
 		System.out.println("Server started");
 		
-
+	
 		try {
 			serversocket = new ServerSocket(5656);
 			connect = serversocket.accept();
-
+			
 			System.out.println("Connection established with client: " + connect.getInetAddress().getHostName());
 
 			out = new ObjectOutputStream(connect.getOutputStream());
@@ -55,7 +57,7 @@ public class BankServer {
 
 			sendCloseSessionToClient(true);
 			System.out.println("Server stopped");
-
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -67,6 +69,8 @@ public class BankServer {
 				e.printStackTrace();
 			}
 		}
+		
+		
 	}
 
 	public void sendMessageToClient(String text) {

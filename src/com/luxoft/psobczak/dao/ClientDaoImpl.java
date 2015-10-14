@@ -24,14 +24,14 @@ import com.luxoft.psobczak.model.SavingAccount;
 public class ClientDaoImpl extends BaseDaoImpl implements ClientDAO {
 
 	@Override
-	public Client findClientByName(Bank bank, String clientName) throws DAOException {
+	public Client findClientByName(Bank bank, String name) throws DAOException {
 		Client client;
 		String sql = "SELECT * FROM CLIENTS WHERE NAME = ? AND BANK = ?";
 		PreparedStatement statement;
 		try {
 			openConnection();
 			statement = super.conn.prepareStatement(sql);
-			statement.setString(1, clientName);
+			statement.setString(1, name);
 			statement.setInt(2, bank.getId());
 
 			ResultSet result = statement.executeQuery();
@@ -45,7 +45,7 @@ public class ClientDaoImpl extends BaseDaoImpl implements ClientDAO {
 				client.addAccountsSetToClient(getAccountsFromClient(client.id));
 				return client;
 			} else {
-				throw new ClientNotFoundException(clientName);
+				throw new ClientNotFoundException(name);
 			}
 
 		} catch (SQLException e) {
@@ -131,16 +131,16 @@ public class ClientDaoImpl extends BaseDaoImpl implements ClientDAO {
 	}
 
 	@Override
-	public void saveClient(Client clientToSave, Bank bank) throws DAOException {
+	public void save(Client client, Bank bank) throws DAOException {
 		String sql = "INSERT INTO CLIENTS (NAME, CITY, EMAIL, GENDER, BANK) VALUES (?,?,?,?,?)";
 		PreparedStatement statement;
 		try{
 			openConnection();
 			statement = super.conn.prepareStatement(sql);
-			statement.setString(1, clientToSave.getName());
-			statement.setString(2, clientToSave.getCity());
-			statement.setString(3, clientToSave.getEmail());
-			statement.setString(4, (clientToSave.getGender() == Gender.MALE) ? "MALE" : "FEMALE");
+			statement.setString(1, client.getName());
+			statement.setString(2, client.getCity());
+			statement.setString(3, client.getEmail());
+			statement.setString(4, (client.getGender() == Gender.MALE) ? "MALE" : "FEMALE");
 			statement.setInt(5, bank.getId());
 			
 			statement.executeUpdate();
@@ -156,9 +156,9 @@ public class ClientDaoImpl extends BaseDaoImpl implements ClientDAO {
 	}
 
 	@Override
-	public void removeClient(Client clientToRemove, Bank bank) throws DAOException {
+	public void remove(Client client, Bank bank) throws DAOException {
 		AccountDaoImpl removeAccounts = new AccountDaoImpl();
-		removeAccounts.removeByClientID(clientToRemove.id);
+		removeAccounts.removeByClientID(client.id);
 		
 		String sql = "DELETE FROM CLIENTS WHERE NAME = ? AND BANK = ?";
 		PreparedStatement statement;
@@ -166,7 +166,7 @@ public class ClientDaoImpl extends BaseDaoImpl implements ClientDAO {
 			openConnection();
 			
 			statement = super.conn.prepareStatement(sql);
-			statement.setString(1, clientToRemove.getName());
+			statement.setString(1, client.getName());
 			statement.setInt(2, bank.getId());		
 			statement.executeUpdate();
 			

@@ -15,7 +15,7 @@ public class DBRemoveClientCommand implements Command {
 	@Override
 	public void execute() throws DAOException {
 		ClientDaoImpl clientDao = new ClientDaoImpl();
-		clientDao.removeClient(BankCommander.currentClient, BankCommander.currentBank);
+		clientDao.remove(BankCommander.currentClient, BankCommander.currentBank);
 		System.out.println("Client removed.");
 
 	}

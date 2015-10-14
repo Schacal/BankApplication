@@ -17,18 +17,18 @@ public class AccountDaoImpl extends BaseDaoImpl implements AccountDAO {
 	
 
 	@Override
-	public void saveAccount(Account accountToSave, Client client) throws DAOException {
+	public void save(Account account, Client client) throws DAOException {
 		String sql = "UPDATE ACCOUNTS SET TYPE = ?, BALANCE = ?, OVERDRAFT = ? WHERE CLIENT_ID = ? AND id = ?";
 		PreparedStatement statement;
 		try {
 			openConnection();
 			statement = super.conn.prepareStatement(sql);
 			
-			statement.setString(1, (accountToSave instanceof SavingAccount) ? "SavingAccount" : "CheckingAccount");
-			statement.setInt(2, accountToSave.getBalance().intValue());			
-			statement.setInt(3, (accountToSave instanceof CheckingAccount) ? ((CheckingAccount) accountToSave).getOverDraft().intValue() : 0);
+			statement.setString(1, (account instanceof SavingAccount) ? "SavingAccount" : "CheckingAccount");
+			statement.setInt(2, account.getBalance().intValue());			
+			statement.setInt(3, (account instanceof CheckingAccount) ? ((CheckingAccount) account).getOverDraft().intValue() : 0);
 			statement.setInt(4, client.id);
-			statement.setInt(5, (accountToSave instanceof CheckingAccount) ? ((CheckingAccount) accountToSave).id : ((SavingAccount) accountToSave).id);
+			statement.setInt(5, (account instanceof CheckingAccount) ? ((CheckingAccount) account).id : ((SavingAccount) account).id);
 			statement.executeUpdate();
 		}
 		catch(SQLException e){
@@ -43,16 +43,16 @@ public class AccountDaoImpl extends BaseDaoImpl implements AccountDAO {
 	}
 
 	@Override
-	public void addAccount(Account accountToSave, Client client) throws DAOException {
+	public void add(Account account, Client client) throws DAOException {
 		String sql = "INSERT INTO ACCOUNTS (TYPE, BALANCE, OVERDRAFT, CLIENT_ID) VALUES (?,?,?,?)";
 		PreparedStatement statement;
 		try {
 			openConnection();
 			statement = super.conn.prepareStatement(sql);
 			
-			statement.setString(1, (accountToSave instanceof SavingAccount) ? "SavingAccount" : "CheckingAccount");
-			statement.setInt(2, accountToSave.getBalance().intValue());			
-			statement.setInt(3, (accountToSave instanceof CheckingAccount) ? ((CheckingAccount) accountToSave).getOverDraft().intValue() : 0);
+			statement.setString(1, (account instanceof SavingAccount) ? "SavingAccount" : "CheckingAccount");
+			statement.setInt(2, account.getBalance().intValue());			
+			statement.setInt(3, (account instanceof CheckingAccount) ? ((CheckingAccount) account).getOverDraft().intValue() : 0);
 			statement.setInt(4, client.id);
 			statement.executeUpdate();
 		}

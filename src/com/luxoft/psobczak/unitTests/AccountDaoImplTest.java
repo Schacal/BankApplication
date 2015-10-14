@@ -44,9 +44,9 @@ public class AccountDaoImplTest {
 	@Test
 	public void testSaveAccount() throws DAOException {
 	
-		clientDao.saveClient(testClient, bank);
+		clientDao.save(testClient, bank);
 
-		accountDaoImpl.saveAccount(checkingAccountToSave, clientDao.findClientByName(bank, testClient.getName()));
+		accountDaoImpl.save(checkingAccountToSave, clientDao.findClientByName(bank, testClient.getName()));
 		
 	}
 	@Ignore
@@ -58,7 +58,7 @@ public class AccountDaoImplTest {
 	@Test
 	public void testRemoveByClientID() throws DAOException {
 		accountDaoImpl.removeByClientID(testClient.id);
-		clientDao.removeClient(testClient, bank);
+		clientDao.remove(testClient, bank);
 	}
 	@Ignore
 	@Test

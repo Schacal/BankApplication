@@ -12,7 +12,7 @@ public class TransferCommand implements Command {
 		AccountDaoImpl accaountDao = new AccountDaoImpl();
 		BankServiceImpl.INSTANCE.transfer(BankCommander.currentClient, BankCommander.currentBank);
 
-		accaountDao.saveAccount(BankCommander.currentClient.getActiveAccount(), BankCommander.currentClient);
+		accaountDao.save(BankCommander.currentClient.getActiveAccount(), BankCommander.currentClient);
 
 	}
 

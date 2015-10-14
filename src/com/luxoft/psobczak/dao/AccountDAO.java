@@ -12,8 +12,8 @@ import com.luxoft.psobczak.model.Client;
 
 public interface AccountDAO {
 
-	void saveAccount(Account accountToSave, Client client)throws DAOException;
-	void addAccount(Account account, Client client)throws DAOException;
+	void save(Account account, Client client)throws DAOException;
+	void add(Account account, Client client)throws DAOException;
 	void removeByClientID(int idClient)throws DAOException;
 	TreeSet <Account> getClientAccounts(int idClient) throws DAOException;	
 }
